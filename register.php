@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h1>Log in</h1>
+                    <h1>Register</h1>
                     <p></p>
                 </div>
             </div>
@@ -42,7 +42,7 @@
     <?php 
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "root";
+    $dbpassword = "";
     $dbname="biblioteka";
     $tablename = "users";
     

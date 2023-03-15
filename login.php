@@ -43,7 +43,7 @@
     session_start();
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "root";
+    $dbpassword = "";
     $dbname="biblioteka";
     $tablename = "users";
     $login = $_POST["login"];
@@ -58,19 +58,25 @@
       die("Connection failed: " . mysqli_connect_error());
     }
     
-    $check = "SELECT * FROM $tablename WHERE login = '$login' AND password = '$password'";
+    $check = "SELECT * FROM  `$tablename` WHERE login = '$login' AND password = '$password'";
     if(isset($_POST["submit"])){
+        echo "<h1>123</h1>";
     $result = mysqli_query($conn, $check);
+    // echo (mysqli_num_rows($result));
             if (mysqli_num_rows($result) > 0) {
+                echo 123;
+
                 // output data of each row
                 $row = mysqli_fetch_assoc($result);
-                // 
+                print_r($row["password"] == $password);
                 if($row["login"] == $login and $row["password"] == $password) {
+                    echo 123;
                    $_SESSION["login"] = $login;
+                   echo $login;
                    session_write_close();
                 //    print_r($_SESSION);
                    header("Location: index.php");
-                   exit;
+                //    exit;
                 //    session_destroy();
                 }
             }
