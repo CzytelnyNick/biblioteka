@@ -43,13 +43,16 @@
     session_start();
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "";
+    $dbpassword = "root";
     $dbname="biblioteka";
     $tablename = "users";
+    if(isset($_POST["password"]) and isset($_POST["login"])){
     $login = $_POST["login"];
     $password = $_POST["password"];
-    echo isset($password);
-    echo isset($login);
+    
+    // echo isset($password);
+    // echo isset($login);
+    
     // Create connection
     $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
     
@@ -86,7 +89,7 @@
            echo "Błędne dane";
         }
     
-    
+    }
     
   
     ?>

@@ -57,28 +57,30 @@
 
             $servername = "localhost";
             $username = "root";
-            $dbpassword = "";
+            $dbpassword = "root";
             $dbname = "biblioteka";
             $tablename = "ksiazki";
             $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             }
+            if(isset($_POST["tytul"]) and isset($_POST["autor"]) and isset($_POST["rokWydania"])){
             $tytul = $_POST["tytul"];            
             $autor = $_POST["autor"];            
             $rokWydania = $_POST["rokWydania"];            
-                        
-            $insert = "INSERT INTO `$tablename` VALUES(null, '$tytul','$autor','$rokWydania');";
-            if(isset($_POST["submit"])){
-            if(!mysqli_query($conn, $insert)){
-                echo "Error: ". mysqli_error($conn);
-            }
-            else{
-                echo "<h1 class='alert alert-success'>Dodano nową książke</h1>";
-                header("Location: index.php");
-            }
-        }
             
+            // $insert = "UPDATE `$tablename` (null, '$tytul','$autor','$rokWydania') WHERE;";
+            if(isset($_POST["submit"])){
+        //     if(!mysqli_query($conn, $insert)){
+        //         echo "Error: ". mysqli_error($conn);
+        //     }
+        //     else{
+        //         echo "<h1 class='alert alert-success'>Dodano nową książke</h1>";
+        //         header("Location: index.php");
+        //     }
+        
+        }
+    }
             ?>
 
         </tbody>

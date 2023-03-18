@@ -42,11 +42,11 @@
     <?php 
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "";
+    $dbpassword = "root";
     $dbname="biblioteka";
     $tablename = "users";
     
-    
+    if(isset($_POST["password"]) and isset($_POST["login"])){
     $dbInitialize = mysqli_connect($servername, $username, $dbpassword);
     if (!$dbInitialize) {
         die("Connection failed: " . mysqli_connect_error());
@@ -85,7 +85,7 @@
             mysqli_error($conn);
         }
       
-  
+    }
     ?>
 </body>
 

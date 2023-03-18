@@ -43,7 +43,7 @@
 
             $servername = "localhost";
             $username = "root";
-            $dbpassword = "";
+            $dbpassword = "root";
             $dbname = "biblioteka";
             $tablename = "ksiazki";
             $initializeDatabase = mysqli_connect($servername, $username, $dbpassword, $dbname);
@@ -65,7 +65,7 @@
             if(mysqli_num_rows($results) > 0){
                 $row = mysqli_fetch_assoc($results);
                 while($row = $results->fetch_assoc()){
-                echo "<tr><th scope='row'>".$row['id']."</th><td>".$row['tytul']."</td><td>".$row['autor']."</td><td>".$row['rokWydania']."</td><td><a href='usun.php/?id=".$row["id"]."'><button class='btn btn-danger'>Usuń książke</button></a> <a href='edytuj.php'><button class='btn btn-primary'>Edytuj książke</button></a></td></tr>";
+                echo "<tr><th scope='row'>".$row['id']."</th><td>".$row['tytul']."</td><td>".$row['autor']."</td><td>".$row['rokWydania']."</td><td><a href='usun.php/?id=".$row["id"]."'><button class='btn btn-danger'>Usuń książke</button></a> <a href='edytuj.php/?id=".$row["id"]."'><button class='btn btn-primary'>Edytuj książke</button></a></td></tr>";
                 }
             }
             ?>
