@@ -42,7 +42,7 @@
     <?php 
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "root";
+    $dbpassword = "";
     $dbname="biblioteka";
     $tablename = "users";
     

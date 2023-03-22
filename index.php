@@ -43,7 +43,7 @@
 
             $servername = "localhost";
             $username = "root";
-            $dbpassword = "root";
+            $dbpassword = "";
             $dbname = "biblioteka";
             $tablename = "ksiazki";
             $initializeDatabase = mysqli_connect($servername, $username, $dbpassword, $dbname);
