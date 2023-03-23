@@ -27,6 +27,7 @@
     ?>
            <section class="py-4 py-xl-5">
         <div class="container">
+            <div><a href="./index.php"><button class="btn btn-danger">Powrót</button></a></div>
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
                     <h1>Dodaj ksiązke</h1>
@@ -57,7 +58,7 @@
 
             $servername = "localhost";
             $username = "root";
-            $dbpassword = "";
+            $dbpassword = "root";
             $dbname = "biblioteka";
             $tablename = "ksiazki";
             $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);

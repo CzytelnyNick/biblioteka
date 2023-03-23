@@ -43,7 +43,7 @@
     session_start();
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "";
+    $dbpassword = "root";
     $dbname="biblioteka";
     $tablename = "users";
     if(isset($_POST["password"]) and isset($_POST["login"])){

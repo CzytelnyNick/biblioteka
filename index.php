@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <div class="container">
     <?php
     session_start();
     $login = $_SESSION["login"];
@@ -25,7 +26,11 @@
 
 
     ?>
-    <a href="dodaj.php"><button class="btn btn-success">Dodaj książke</button></a>
+    <div class="row">
+        <div class="col-11"><a href="dodaj.php"><button class="btn btn-success">Dodaj książke</button></a></div>
+        <div class="col-1"><a href="./logout.php"><button class="btn btn-danger">Wyloguj</button></a></div>
+    </div>
+    
     <table class="table">
         <thead>
             <tr>
@@ -43,7 +48,7 @@
 
             $servername = "localhost";
             $username = "root";
-            $dbpassword = "";
+            $dbpassword = "root";
             $dbname = "biblioteka";
             $tablename = "ksiazki";
             $initializeDatabase = mysqli_connect($servername, $username, $dbpassword, $dbname);
@@ -72,6 +77,7 @@
     
         </tbody>
     </table>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 
