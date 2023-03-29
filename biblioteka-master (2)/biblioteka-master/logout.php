@@ -7,14 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-    session_start();
-    $login = $_SESSION["login"];
-    
-    if (!isset($_SESSION["login"])) {
-        header("Location: login.php");
-    }
-    ?>
     <?php 
     session_start();
     // $_SESSION["login"] = null;

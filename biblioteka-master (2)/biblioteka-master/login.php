@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h1>Register</h1>
+                    <h1>Log in</h1>
                     <p></p>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                             <form class="text-center" method="post">
                                 <div class="mb-3"><input class="form-control" name="login" placeholder="Login" /></div>
                                 <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Register</button></div>
+                                <div class="mb-3"><input class="btn btn-primary d-block w-100" type="submit" name="submit" value="Log in"></button></div>
                                 <p class="text-muted"></p>
                             </form>
                         </div>
@@ -40,25 +40,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <?php 
+    session_start();
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "";
+    $dbpassword = "root";
     $dbname="biblioteka";
     $tablename = "users";
-    
     if(isset($_POST["password"]) and isset($_POST["login"])){
-    $dbInitialize = mysqli_connect($servername, $username, $dbpassword);
-    if (!$dbInitialize) {
-        die("Connection failed: " . mysqli_connect_error());
-      }
-      $sqlDBInitialize = "CREATE DATABASE IF NOT EXISTS biblioteka";
-      if(mysqli_query($dbInitialize, $sqlDBInitialize)){
-        
-      }
-      else {
-        echo "Error creating database: " . mysqli_error($conn);
-      }
-      
+    $login = $_POST["login"];
+    $password = $_POST["password"];
+    
+    // echo isset($password);
+    // echo isset($login);
+    
     // Create connection
     $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
     
@@ -66,27 +60,38 @@
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
-    $sqlCreatingTables = "CREATE TABLE IF NOT EXISTS $tablename (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, login VARCHAR(25), password VARCHAR(25), role VARCHAR(25))";
-    if(mysqli_query($conn, $sqlCreatingTables)){
-      
-    }
-    else {
-      echo "Error". mysqli_error($conn);
-    }
-    $login = $_POST["login"];
-    $password = $_POST["password"];
-    $role="USER";
-    $sqlInserting = "INSERT INTO $tablename VALUES (null,'".$login."','".$password."','$role')";
     
-        if(mysqli_query($conn, $sqlInserting)){
-            header("Location: index.php");
+    $check = "SELECT * FROM  `$tablename` WHERE login = '$login' AND password = '$password'";
+    if(isset($_POST["submit"])){
+        echo "<h1>123</h1>";
+    $result = mysqli_query($conn, $check);
+    // echo (mysqli_num_rows($result));
+            if (mysqli_num_rows($result) > 0) {
+                echo 123;
+
+                // output data of each row
+                $row = mysqli_fetch_assoc($result);
+                print_r($row["password"] == $password);
+                if($row["login"] == $login and $row["password"] == $password) {
+                    echo 123;
+                   $_SESSION["login"] = $login;
+                   echo $login;
+                   session_write_close();
+                //    print_r($_SESSION);
+                   header("Location: index.php");
+                //    exit;
+                //    session_destroy();
+                }
+            }
+                
         }
         else {
-            mysqli_error($conn);
+           echo "Błędne dane";
         }
-      
+    
     }
+    
+  
     ?>
 </body>
 

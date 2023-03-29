@@ -42,7 +42,7 @@
     <?php 
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "";
+    $dbpassword = "root";
     $dbname="biblioteka";
     $tablename = "users";
     
@@ -67,7 +67,7 @@
       die("Connection failed: " . mysqli_connect_error());
     }
     $sqlCreatingTables = "CREATE TABLE IF NOT EXISTS $tablename (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, login VARCHAR(25), password VARCHAR(25), role VARCHAR(25))";
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, login VARCHAR(25), password VARCHAR(25))";
     if(mysqli_query($conn, $sqlCreatingTables)){
       
     }
@@ -76,11 +76,10 @@
     }
     $login = $_POST["login"];
     $password = $_POST["password"];
-    $role="USER";
-    $sqlInserting = "INSERT INTO $tablename VALUES (null,'".$login."','".$password."','$role')";
+    $sqlInserting = "INSERT INTO $tablename VALUES (null,'".$login."','".$password."')";
     
         if(mysqli_query($conn, $sqlInserting)){
-            header("Location: index.php");
+            
         }
         else {
             mysqli_error($conn);

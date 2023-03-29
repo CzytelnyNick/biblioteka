@@ -8,17 +8,9 @@
 </head>
 <body>
     <?php 
-     
-     session_start();
-     $login = $_SESSION["login"];
-     
-     if (!isset($_SESSION["login"])) {
-         header("Location: login.php");
-     }
-     
         $servername = "localhost";
         $username = "root";
-        $dbpassword = "";
+        $dbpassword = "root";
         $dbname = "biblioteka";
         $tablename = "ksiazki";
         

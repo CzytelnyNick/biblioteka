@@ -12,6 +12,7 @@
 <body>
     <section class="py-4 py-xl-5">
         <div class="container">
+
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
                     <h1>Log in</h1>
@@ -28,7 +29,11 @@
                             <form class="text-center" method="post">
                                 <div class="mb-3"><input class="form-control" name="login" placeholder="Login" /></div>
                                 <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                                <div class="mb-3"><input class="btn btn-primary d-block w-100" type="submit" name="submit" value="Log in"></button></div>
+                                <div class="mb-3"><input class="btn btn-primary d-block w-100" type="submit" name="submit" value="Log in"></button>
+                                    <a href="./register.php">
+                                        <div class="">Nie masz konta? Zarejestruj sie</div>
+                                    </a>
+                                </div>
                                 <p class="text-muted"></p>
                             </form>
                         </div>
@@ -39,59 +44,57 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <?php 
+    <?php
     session_start();
     $servername = "localhost";
     $username = "root";
-    $dbpassword = "root";
-    $dbname="biblioteka";
+    $dbpassword = "";
+    $dbname = "biblioteka";
     $tablename = "users";
-    if(isset($_POST["password"]) and isset($_POST["login"])){
-    $login = $_POST["login"];
-    $password = $_POST["password"];
-    
-    // echo isset($password);
-    // echo isset($login);
-    
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
-    
-    // Check connection
-    if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
-    }
-    
-    $check = "SELECT * FROM  `$tablename` WHERE login = '$login' AND password = '$password'";
-    if(isset($_POST["submit"])){
-        echo "<h1>123</h1>";
-    $result = mysqli_query($conn, $check);
-    // echo (mysqli_num_rows($result));
+    if (isset($_POST["password"]) and isset($_POST["login"])) {
+        $login = $_POST["login"];
+        $password = $_POST["password"];
+
+        // echo isset($password);
+        // echo isset($login);
+
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $dbpassword, $dbname);
+
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $check = "SELECT * FROM  `$tablename` WHERE login = '$login' AND password = '$password'";
+        if (isset($_POST["submit"])) {
+            echo "<h1>Błędne logowanie</h1>";
+            $result = mysqli_query($conn, $check);
+            // echo (mysqli_num_rows($result));
             if (mysqli_num_rows($result) > 0) {
                 echo 123;
 
                 // output data of each row
                 $row = mysqli_fetch_assoc($result);
                 print_r($row["password"] == $password);
-                if($row["login"] == $login and $row["password"] == $password) {
+                if ($row["login"] == $login and $row["password"] == $password) {
                     echo 123;
-                   $_SESSION["login"] = $login;
-                   echo $login;
-                   session_write_close();
-                //    print_r($_SESSION);
-                   header("Location: index.php");
-                //    exit;
-                //    session_destroy();
+                    $login = array($row["login"], $row["role"]);
+                    $_SESSION["login"] = $login;
+                    print_r($login);
+                    session_write_close();
+                    //    print_r($_SESSION);
+                    header("Location: index.php");
+                    //    exit;
+                    //    session_destroy();
                 }
             }
-                
+        } else {
+            echo "Błędne dane";
         }
-        else {
-           echo "Błędne dane";
-        }
-    
     }
-    
-  
+
+
     ?>
 </body>
 
